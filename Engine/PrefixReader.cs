@@ -16,7 +16,6 @@ namespace Engine
             var storage = InjectContainer.Instance.Get<IPrefixStorage>();
 
             using (var reader = new StreamReader(input))
-            using (var writer = new StreamWriter(output))
             {
                 //чтение слов найденных в текстах
                 var wordCount = Convert.ToInt32(reader.ReadLine());
@@ -25,6 +24,8 @@ namespace Engine
                 }
 
                 //чтение слов, введенных пользователем
+                var writer = new StreamWriter(output);
+
                 var prefixCount = Convert.ToInt32(reader.ReadLine());
                 while (prefixCount-- > 0) {
                     //поиск слов, удовлетворяющих запросу
@@ -34,6 +35,8 @@ namespace Engine
                     }
                     writer.WriteLine();
                 }
+
+                writer.Flush();
             }
         }
     }

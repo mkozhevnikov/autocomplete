@@ -100,7 +100,14 @@ karetachi";
 
             #endregion
 
-            PrefixReader.Process(input.ToStream(), output.ToStream());
+            using (var outputStream = new MemoryStream()) {
+                PrefixReader.Process(input.ToStream(), outputStream);
+                
+                outputStream.Position = 0;
+                using (var reader = new StreamReader(outputStream)) {
+                    Assert.AreEqual(reader.ReadToEnd().TrimEnd(), output);
+                }
+            }
         }
     }
 }

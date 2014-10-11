@@ -45,10 +45,13 @@
   <ItemGroup>
     <Compile Include="Kernel\InjectContainer.cs" />
     <Compile Include="Kernel\SimpleStorageModule.cs" />
+    <Compile Include="Kernel\TrieStorageModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PrefixReader.cs" />
     <Compile Include="Storage\DictionaryStorage.cs" />
     <Compile Include="Storage\IPrefixStorage.cs" />
+    <Compile Include="Storage\PrefixStorage.cs" />
+    <Compile Include="Storage\TrieStorage.cs" />
     <Compile Include="Util\StringUtil.cs" />
   </ItemGroup>
   <ItemGroup>

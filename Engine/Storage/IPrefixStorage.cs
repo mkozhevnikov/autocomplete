@@ -2,7 +2,7 @@
 {
     public interface IPrefixStorage {
         
-        void Add(string wordLine);
+        void Add(string word);
 
         string[] Lookup(string prefix, int count = 10);
     }

@@ -17,7 +17,7 @@ namespace Engine.Kernel
         }
 
         public static StandardKernel Instance {
-            get { return _instance ?? (_instance = new StandardKernel(new SimpleStorageModule())); }
+            get { return _instance ?? (_instance = new StandardKernel(new TrieStorageModule())); }
         }
     }
 }
