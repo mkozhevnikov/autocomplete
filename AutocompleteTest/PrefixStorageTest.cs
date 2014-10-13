@@ -97,9 +97,11 @@ namespace AutocompleteTest
             target.Add("exercise 2");
             target.Add("ecology 5");
             target.Add("tetris 7");
+            target.Add("exam 10");
+            target.Add("exa 11");
 
-            string[] actual = target.Lookup("ex");
-            Assert.IsTrue(actual.SequenceEqual(new[] { "exist", "exercise", "examination", "example" }));
+            string[] actual = target.Lookup("exam");
+            Assert.IsTrue(actual.SequenceEqual(new[] { "exam", "examination", "example" }));
         }
     }
 }

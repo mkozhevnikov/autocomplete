@@ -101,7 +101,7 @@ karetachi";
             #endregion
 
             using (var outputStream = new MemoryStream()) {
-                PrefixReader.Process(input.ToStream(), outputStream);
+                PrefixReader.Process(new StringReader(input), new StreamWriter(outputStream));
                 
                 outputStream.Position = 0;
                 using (var reader = new StreamReader(outputStream)) {

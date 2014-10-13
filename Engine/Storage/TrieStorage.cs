@@ -74,7 +74,6 @@ namespace Engine.Storage
 
         public TrieNode this[char letter] {
             get {
-//                return Children.Count != 0 ? Children.SingleOrDefault(node => node.Letter == letter) : null;
                 return Children.SingleOrDefault(node => node.Letter == letter);
             }
         }
