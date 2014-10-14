@@ -67,7 +67,7 @@ namespace AutocompleteTest
 
 
         /// <summary>
-        ///A test for Process
+        ///Тест из постановки
         ///</summary>
         [TestMethod()]
         public void ProcessTest() {
@@ -101,7 +101,7 @@ karetachi";
             #endregion
 
             using (var outputStream = new MemoryStream()) {
-                PrefixReader.Process(new StringReader(input), new StreamWriter(outputStream));
+                new PrefixReader(new StringReader(input)).Process(new StreamWriter(outputStream));
                 
                 outputStream.Position = 0;
                 using (var reader = new StreamReader(outputStream)) {

@@ -69,7 +69,7 @@ namespace AutocompleteTest
 
 
         /// <summary>
-        ///A test for Add
+        ///Проверка на добавление слова
         ///</summary>
         [TestMethod()]
         public void AddTest()
@@ -85,7 +85,7 @@ namespace AutocompleteTest
         }
 
         /// <summary>
-        ///A test for Lookup
+        ///Проверка порядка возвращаемых записей
         ///</summary>
         [TestMethod()]
         public void LookupTest()
@@ -101,7 +101,27 @@ namespace AutocompleteTest
             target.Add("exa 11");
 
             string[] actual = target.Lookup("exam");
+            Assert.AreEqual(3, actual.Length);
             Assert.IsTrue(actual.SequenceEqual(new[] { "exam", "examination", "example" }));
+        }
+
+        /// <summary>
+        ///Проверка пустого результат
+        ///</summary>
+        [TestMethod()]
+        public void EmptyLookupTest()
+        {
+            IPrefixStorage target = InjectContainer.Instance.Get<IPrefixStorage>();
+            target.Add("example 0");
+            target.Add("exist 3");
+            target.Add("examination 1");
+            target.Add("exercise 2");
+            target.Add("ecology 5");
+            target.Add("exam 10");
+            target.Add("exa 11");
+
+            string[] actual = target.Lookup("tetris");
+            Assert.AreEqual(0, actual.Length);
         }
     }
 }

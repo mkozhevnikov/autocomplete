@@ -9,31 +9,36 @@ using Ninject;
 
 namespace Engine
 {
-    public class PrefixReader
-    {
-        public static void Process(Stream input, Stream output) {
-            Process(new StreamReader(input), new StreamWriter(output));
-        }
+    public class PrefixReader {
+        
+        private readonly IPrefixStorage storage;
 
-        public static void Process(TextReader reader, TextWriter writer) {
+        private readonly TextReader reader;
+
+        public PrefixReader(TextReader reader) {
+            this.reader = reader;
+
             //получение экземляра класса, реализующего интерфейс IPrefixStorage
-            var storage = InjectContainer.Instance.Get<IPrefixStorage>();
+            storage = InjectContainer.Instance.Get<IPrefixStorage>();
 
             //чтение слов найденных в текстах
             var wordCount = Convert.ToInt32(reader.ReadLine());
-            while (wordCount-- > 0)
-            {
+            while (wordCount-- > 0) {
                 storage.Add(reader.ReadLine());
             }
+        }
 
+        public static void Process(Stream input, Stream output) {
+            new PrefixReader(new StreamReader(input)).Process(new StreamWriter(output));
+        }
+
+        public void Process(TextWriter writer) {
             //чтение слов, введенных пользователем
             var prefixCount = Convert.ToInt32(reader.ReadLine());
-            while (prefixCount-- > 0)
-            {
+            while (prefixCount-- > 0) {
                 //поиск слов, удовлетворяющих запросу
                 var words = storage.Lookup(reader.ReadLine());
-                foreach (var word in words)
-                {
+                foreach (var word in words) {
                     writer.WriteLine(word);
                 }
                 writer.WriteLine();

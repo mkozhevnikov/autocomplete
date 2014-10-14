@@ -10,7 +10,7 @@ namespace Autocomplete
     {
         static void Main(string[] args)
         {
-            PrefixReader.Process(Console.In, Console.Out);
+            new PrefixReader(Console.In).Process(Console.Out);
         }
     }
 }

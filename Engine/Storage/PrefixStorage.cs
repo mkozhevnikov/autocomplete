@@ -8,8 +8,13 @@ namespace Engine.Storage
     abstract class PrefixStorage : IPrefixStorage
     {
         public void Add(string word) {
-            var wordAndRate = word.Split(' ');
-            Add(wordAndRate[0], Convert.ToInt32(wordAndRate[1]));
+            try {
+                var wordAndRate = word.Split(' ');
+                Add(wordAndRate[0], Convert.ToInt32(wordAndRate[1]));
+            }
+            catch (Exception e) {
+                throw new Exception("Входная строка должна состоять из слова и числа, разделенных одним пробелом", e);
+            }
         }
 
         protected abstract void Add(string word, int rate);
